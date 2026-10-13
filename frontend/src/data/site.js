@@ -16,6 +16,7 @@ export const SITE = {
   // Google Maps place. Powers the Directions link even before the backend Google API key is set up.
   placeId: 'ChIJA190-cETrjsR418j6j05C9s',
   heroImage: '', // empty = the built-in hero photo
+  showGallery: true, // false hides the whole Gallery section (switch in the admin's Photos tab)
   offerNote: 'Offer prices apply only to bookings made before the offer ends. Show your booking at the counter.',
   // Offers are managed in the admin page. Each: { id, badge, title, desc, items[], was, now, who, ends, terms }.
   offers: [],

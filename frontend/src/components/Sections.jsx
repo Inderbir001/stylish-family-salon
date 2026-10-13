@@ -99,6 +99,10 @@ const LINKS = [
 ]
 
 // Indian numbers written with the 0 trunk prefix (0 81236 71157) are dialled as +91 so they work from anywhere.
+// Links shown in the header/footer (hides Offers when none are live and Gallery when switched off).
+const visibleLinks = () =>
+  LINKS.filter(([id]) => (id !== 'offers' || activeOffers().length > 0) && (id !== 'gallery' || SITE.showGallery !== false))
+
 const tel = (p) => {
   const d = p.replace(/[^\d+]/g, '')
   return `tel:${/^0\d{10}$/.test(d) ? `+91${d.slice(1)}` : d}`
@@ -138,7 +142,7 @@ export function Nav() {
       <div className="wrap nav-in">
         <Logo onClick={() => setOpen(false)} />
         <nav className="links" aria-label="Primary">
-          {LINKS.filter(([id]) => id !== 'offers' || activeOffers().length > 0).map(([id, label]) => (
+          {visibleLinks().map(([id, label]) => (
             <a key={id} href={`#${id}`} onClick={() => setOpen(false)} className={id === 'offers' ? 'hotlink' : ''}>
               {label}
             </a>
@@ -340,6 +344,7 @@ const SHOTS = [
 ]
 
 export function Gallery() {
+  if (SITE.showGallery === false) return null
   return (
     <section className="section mesh alt" id="gallery">
       <div className="wrap">
@@ -533,7 +538,7 @@ export function Footer({ place }) {
           )}
         </div>
         <nav aria-label="Footer">
-          {LINKS.filter(([id]) => id !== 'offers' || activeOffers().length > 0).map(([id, label]) => (
+          {visibleLinks().map(([id, label]) => (
             <a key={id} href={`#${id}`}>
               {label}
             </a>

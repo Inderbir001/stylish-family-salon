@@ -503,8 +503,25 @@ function Photos({ toast }) {
     if (await act(() => api.del(`/gallery/${g.id}`), 'Photo deleted')) gal.setData(gal.data.filter((x) => x.id !== g.id))
   }
 
+  const galleryOn = set.data.showGallery !== false
+  const toggleGallery = (on) =>
+    act(async () => {
+      const next = { ...set.data, showGallery: on }
+      await api.put('/settings', next)
+      set.setData(next)
+    }, on ? 'Gallery is now shown' : 'Gallery is now hidden')
+
   return (
     <div className="stack">
+      <div className="card-a">
+        <h3>Gallery section</h3>
+        <label className="check">
+          <input type="checkbox" checked={galleryOn} onChange={(e) => toggleGallery(e.target.checked)} />
+          Show the gallery on the website
+        </label>
+        <p className="muted small">Untick to hide the whole gallery section (and its menu and footer links). Your uploaded photos are kept.</p>
+      </div>
+
       <div className="card-a">
         <h3>Main (top of page) photo</h3>
         <div className="hero-prev"><img src={set.data.heroImage || '/img/hero.jpg'} alt="Current main photo" /></div>

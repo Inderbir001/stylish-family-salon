@@ -94,6 +94,7 @@ export function createAdmin(db, { password, secret, onChange }) {
   const settingsSchema = z.object({
     phone: str(30), whatsapp: str(20), email: str(120), address: str(300), mapEmbedUrl: str(1000),
     instagram: str(300), hoursSummary: str(120), reviewUrl: str(500), placeId: str(200), offerNote: str(300), heroImage: str(1000),
+    showGallery: z.boolean().optional(),
     hours: z.array(z.tuple([z.string().trim().max(60), z.string().trim().max(60)])).max(10).optional(),
   })
   r.get('/settings', ah(async (_req, res) => {
