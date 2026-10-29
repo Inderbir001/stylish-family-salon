@@ -548,6 +548,21 @@ export function Footer({ place }) {
           © {new Date().getFullYear()} {SITE.name}
         </small>
       </div>
+      <div className="wrap credit">
+        <span>
+          Website by{' '}
+          <a className="vq" href="https://www.vouchiq.in" target="_blank" rel="noopener noreferrer">
+            VouchIQ Technologies Pvt. Ltd.
+          </a>
+        </span>
+        <span>
+          <a href="tel:+919872510723">98725 10723</a> · <a href="tel:+916362306931">63623 06931</a>
+        </span>
+        <span>
+          <a href="mailto:vouchiq@gmail.com?subject=Website%20enquiry">vouchiq@gmail.com</a> ·{' '}
+          <a href="https://www.vouchiq.in" target="_blank" rel="noopener noreferrer">vouchiq.in</a>
+        </span>
+      </div>
     </footer>
   )
 }
